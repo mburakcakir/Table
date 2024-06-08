@@ -2,7 +2,7 @@ package com.mburakcakir.common.destination
 
 enum class TableDestination(
     val route: String,
-    val arguments: List<String>? = null
+    val arguments: List<String> = listOf()
 ) {
     Leagues(
         route = "leagues"

@@ -21,6 +21,12 @@ fun String.encode(): String = URLEncoder.encode(
     "UTF-8"
 )
 
+fun String?.notNullOrEmpty(f: (String) -> Unit) {
+    if (!this.isNullOrEmpty()) {
+        f(this)
+    }
+}
+
 @Composable
 fun String.loadImageWithUrl(size: Dp? = null, contentDescription: String? = null) {
     AsyncImage(
