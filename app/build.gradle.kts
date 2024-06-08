@@ -13,4 +13,5 @@ dependencies {
     implementation(projects.core.common)
     implementation(projects.feature.leagues)
     implementation(projects.feature.standings)
+    implementation(projects.feature.teamdetail)
 }

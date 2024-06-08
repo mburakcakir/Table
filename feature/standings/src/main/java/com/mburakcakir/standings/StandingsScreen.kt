@@ -1,6 +1,7 @@
 package com.mburakcakir.standings
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -55,7 +56,8 @@ import java.util.Locale
 @Composable
 fun StandingsScreen(
     uiState: StandingsUiState,
-    onSeasonClick: (Int) -> Unit
+    onSeasonClick: (Int) -> Unit,
+    onTeamClick: () -> Unit
 ) {
 
     Column(
@@ -73,7 +75,11 @@ fun StandingsScreen(
             modifier = Modifier.fillMaxSize()
         ) {
             if (uiState.standings?.standings.isNotNullAndEmpty() && !uiState.isLoading) {
-                Standings(standings = uiState.standings, headers = uiState.headerList)
+                Standings(
+                    standings = uiState.standings,
+                    headers = uiState.headerList,
+                    onTeamClick = onTeamClick
+                )
             } else {
                 Loading()
             }
@@ -120,13 +126,13 @@ fun DropDownHeader(
 }
 
 @Composable
-fun Standings(standings: Standings?, headers: MutableList<String>) {
+fun Standings(standings: Standings?, headers: MutableList<String>, onTeamClick: () -> Unit) {
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
         Spacer(modifier = Modifier.height(8.dp))
         Header(headers)
-        TeamList(standings)
+        TeamList(standings, onTeamClick)
     }
 }
 
@@ -157,7 +163,7 @@ fun HeaderDetail(shortcut: String) {
 }
 
 @Composable
-fun TeamList(standings: Standings?) {
+fun TeamList(standings: Standings?, onTeamClick: () -> Unit) {
     LazyColumn {
         item {
             Spacer(modifier = Modifier.height(8.dp))
@@ -165,7 +171,8 @@ fun TeamList(standings: Standings?) {
         this.itemsIndexed(items = standings?.standings!!) { index, item ->
             Team(
                 item = item,
-                bgColor = if (index % 2 != 0) Color(0xFFf0eeed) else Color.White
+                bgColor = if (index % 2 != 0) Color(0xFFf0eeed) else Color.White,
+                onTeamClick = onTeamClick
             )
         }
         item {
@@ -211,12 +218,15 @@ fun Qualification(qualification: Qualification) {
 }
 
 @Composable
-fun Team(item: Standing, bgColor: Color) {
+fun Team(item: Standing, bgColor: Color, onTeamClick: () -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .height(IntrinsicSize.Max)
-            .background(bgColor),
+            .background(bgColor)
+            .clickable {
+                onTeamClick()
+            },
         horizontalArrangement = Arrangement.End,
         verticalAlignment = Alignment.CenterVertically
     ) {

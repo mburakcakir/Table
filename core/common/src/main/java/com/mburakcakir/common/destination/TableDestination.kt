@@ -10,6 +10,9 @@ enum class TableDestination(
     Standings(
         route = "standings",
         arguments = listOf("leagueId","leagueIcon")
+    ),
+    TeamDetail(
+        route = "teamDetail"
     )
 }
 

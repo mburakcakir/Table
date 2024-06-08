@@ -1,0 +1,3 @@
+package com.mburakcakir.teamdetail
+
+class TeamDetailUiState

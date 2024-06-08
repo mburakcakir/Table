@@ -7,6 +7,7 @@ import com.mburakcakir.common.destination.TableDestination
 import com.mburakcakir.common.extensions.encode
 import com.mburakcakir.leagues.leaguesRoute
 import com.mburakcakir.standings.standingsRoute
+import com.mburakcakir.teamdetail.teamDetailRoute
 
 @Composable
 fun TableAppNavigation() {
@@ -22,7 +23,12 @@ fun TableAppNavigation() {
                     )
                 }
             )
-            standingsRoute()
+            standingsRoute(
+                onTeamClick = {
+                    navController.navigate(TableDestination.TeamDetail.route)
+                }
+            )
+            teamDetailRoute()
         }
     )
 }

@@ -11,7 +11,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.mburakcakir.common.destination.TableDestination
 
-fun NavGraphBuilder.standingsRoute() {
+fun NavGraphBuilder.standingsRoute(
+    onTeamClick: () -> Unit
+) {
     val route = TableDestination.Standings.route
     val leagueId = TableDestination.Standings.arguments?.get(0)
     val leagueIcon = TableDestination.Standings.arguments?.get(1)
@@ -25,6 +27,7 @@ fun NavGraphBuilder.standingsRoute() {
         StandingsRoute(
             leagueId = backStackEntry.arguments?.getString("$leagueId") ?: "",
             leagueIcon = backStackEntry.arguments?.getString("$leagueIcon") ?: "",
+            onTeamClick = onTeamClick
         )
     }
 }
@@ -33,6 +36,7 @@ fun NavGraphBuilder.standingsRoute() {
 fun StandingsRoute(
     leagueId: String,
     leagueIcon: String,
+    onTeamClick: () -> Unit,
     viewModel: StandingsViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -42,6 +46,7 @@ fun StandingsRoute(
 
     StandingsScreen(
         uiState = uiState.copy(leagueIcon = leagueIcon),
-        onSeasonClick = { viewModel.getStandings(leagueId = leagueId, season = it) }
+        onSeasonClick = { viewModel.getStandings(leagueId = leagueId, season = it) },
+        onTeamClick = onTeamClick
     )
 }
