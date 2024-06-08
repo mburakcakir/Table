@@ -50,7 +50,9 @@ import com.mburakcakir.domain.model.Standing
 import com.mburakcakir.domain.model.Standings
 import com.mburakcakir.network.model.Note
 import com.mburakcakir.network.model.Season
-import com.mburakcakir.ui.Loading
+import com.mburakcakir.ui.header.Header
+import com.mburakcakir.ui.loading.Loading
+import com.mburakcakir.ui.teamstatistics.TeamStatistics
 import java.util.Locale
 
 @Composable
@@ -59,7 +61,6 @@ fun StandingsScreen(
     onSeasonClick: (Int) -> Unit,
     onTeamClick: () -> Unit
 ) {
-
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -137,32 +138,6 @@ fun Standings(standings: Standings?, headers: MutableList<String>, onTeamClick: 
 }
 
 @Composable
-fun Header(headers: MutableList<String>) {
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.End
-    ) {
-        Spacer(modifier = Modifier.weight(1f))
-        headers.forEach {
-            HeaderDetail(shortcut = it)
-        }
-        Spacer(modifier = Modifier.width(4.dp))
-    }
-}
-
-@Composable
-fun HeaderDetail(shortcut: String) {
-    Text(
-        text = shortcut,
-        fontWeight = FontWeight.Bold,
-        fontSize = 12.sp,
-        maxLines = 1,
-        modifier = Modifier.width(24.dp),
-        textAlign = TextAlign.Center,
-    )
-}
-
-@Composable
 fun TeamList(standings: Standings?, onTeamClick: () -> Unit) {
     LazyColumn {
         item {
@@ -179,13 +154,13 @@ fun TeamList(standings: Standings?, onTeamClick: () -> Unit) {
             Spacer(modifier = Modifier.height(8.dp))
         }
         item {
-            QualificationsInfo(standings.qualifications?.list)
+            Qualifications(standings.qualifications?.list)
         }
     }
 }
 
 @Composable
-fun QualificationsInfo(qualifications: List<Qualification>?) {
+fun Qualifications(qualifications: List<Qualification>?) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -250,13 +225,7 @@ fun Team(item: Standing, bgColor: Color, onTeamClick: () -> Unit) {
             overflow = TextOverflow.Ellipsis
         )
         Spacer(modifier = Modifier.width(16.dp))
-        item.values?.forEachIndexed { index, it ->
-            if (index == (item.values?.size?.minus(1) ?: 0)) {
-                TeamStatistics(info = it, fontWeight = FontWeight.Bold)
-            } else {
-                TeamStatistics(info = it)
-            }
-        }
+        TeamStatistics(values = item.values)
         Spacer(modifier = Modifier.width(4.dp))
     }
     HorizontalDivider()
@@ -275,18 +244,6 @@ fun Rank(note: Note?) {
     } else {
         Spacer(modifier = Modifier.width(4.dp))
     }
-}
-
-@Composable
-fun TeamStatistics(info: String, fontWeight: FontWeight = FontWeight.Normal) {
-    Text(
-        text = info,
-        fontWeight = fontWeight,
-        fontSize = 12.sp,
-        maxLines = 1,
-        modifier = Modifier.width(24.dp),
-        textAlign = TextAlign.Center
-    )
 }
 
 @Composable
