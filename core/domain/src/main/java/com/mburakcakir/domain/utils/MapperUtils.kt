@@ -29,7 +29,6 @@ class StandingHandler(private val standingInfo: StandingInfo) {
 
     private val emptyLogo = "https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/default-team-logo-500.png"
     fun toMapperModel() = Standing(
-        emptyLogo = emptyLogo,
         teamName = standingInfo.team?.name,
         logo = standingInfo.team?.logos?.get(0)?.href ?: emptyLogo,
         rank = standingInfo.stats?.find { it.name == "rank" }?.value.toString(),
