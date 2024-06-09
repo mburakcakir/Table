@@ -3,7 +3,7 @@ package com.mburakcakir.domain.model
 import com.mburakcakir.network.model.Note
 
 data class Standings(
-    val name: String? = null,
+    val leagueName: String? = null,
     val standings: List<Standing>? = null,
     val qualifications: Qualifications? = null
 )

@@ -48,6 +48,8 @@ import com.mburakcakir.common.extensions.notNullOrEmptyComposable
 import com.mburakcakir.domain.model.Qualification
 import com.mburakcakir.domain.model.Standing
 import com.mburakcakir.domain.model.Standings
+import com.mburakcakir.domain.model.teamdetail.TeamDetail
+import com.mburakcakir.domain.model.teamdetail.TeamDetailStandings
 import com.mburakcakir.network.model.Note
 import com.mburakcakir.network.model.Season
 import com.mburakcakir.ui.header.Header
@@ -59,14 +61,14 @@ import java.util.Locale
 fun StandingsScreen(
     uiState: StandingsUiState,
     onSeasonClick: (Int) -> Unit,
-    onTeamClick: () -> Unit
+    onTeamClick: (TeamDetail) -> Unit
 ) {
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
         uiState.standings?.standings.notNullOrEmptyComposable {
             DropDownHeader(
-                uiState.standings?.name,
+                uiState.standings?.leagueName,
                 uiState.leagueIcon,
                 uiState.seasons?.seasons,
                 onSeasonClick
@@ -76,10 +78,24 @@ fun StandingsScreen(
             modifier = Modifier.fillMaxSize()
         ) {
             if (uiState.standings?.standings.isNotNullAndEmpty() && !uiState.isLoading) {
-                Standings(
+                StandingsInfo(
                     standings = uiState.standings,
                     headers = uiState.headerList,
-                    onTeamClick = onTeamClick
+                    onTeamClickNotifier = { standing ->
+                        val teamDetail = uiState.standings?.let { standings ->
+                            TeamDetail(
+                                seasons = uiState.seasons?.seasons,
+                                standings = TeamDetailStandings(
+                                    leagueName = standings.leagueName,
+                                    teamName = standing?.teamName,
+                                    logo = standing?.logo,
+                                    standings = standings.standings,
+                                    qualifications = standings.qualifications
+                                )
+                            )
+                        }
+                        teamDetail?.let { onTeamClick(it) }
+                    }
                 )
             } else {
                 Loading()
@@ -127,18 +143,22 @@ fun DropDownHeader(
 }
 
 @Composable
-fun Standings(standings: Standings?, headers: MutableList<String>, onTeamClick: () -> Unit) {
+fun StandingsInfo(
+    standings: Standings?,
+    headers: MutableList<String>,
+    onTeamClickNotifier: (Standing?) -> Unit
+) {
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
         Spacer(modifier = Modifier.height(8.dp))
         Header(headers)
-        TeamList(standings, onTeamClick)
+        TeamList(standings, onTeamClickNotifier)
     }
 }
 
 @Composable
-fun TeamList(standings: Standings?, onTeamClick: () -> Unit) {
+fun TeamList(standings: Standings?, onTeamClickNotifier: (Standing?) -> Unit) {
     LazyColumn {
         item {
             Spacer(modifier = Modifier.height(8.dp))
@@ -147,7 +167,7 @@ fun TeamList(standings: Standings?, onTeamClick: () -> Unit) {
             Team(
                 item = item,
                 bgColor = if (index % 2 != 0) Color(0xFFf0eeed) else Color.White,
-                onTeamClick = onTeamClick
+                onTeamClickNotifier = onTeamClickNotifier
             )
         }
         item {
@@ -193,14 +213,14 @@ fun Qualification(qualification: Qualification) {
 }
 
 @Composable
-fun Team(item: Standing, bgColor: Color, onTeamClick: () -> Unit) {
+fun Team(item: Standing, bgColor: Color, onTeamClickNotifier: (Standing?) -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .height(IntrinsicSize.Max)
             .background(bgColor)
             .clickable {
-                onTeamClick()
+                onTeamClickNotifier.invoke(item)
             },
         horizontalArrangement = Arrangement.End,
         verticalAlignment = Alignment.CenterVertically

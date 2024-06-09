@@ -9,9 +9,10 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.mburakcakir.common.destination.TableDestination
+import com.mburakcakir.domain.model.teamdetail.TeamDetail
 
 fun NavGraphBuilder.standingsRoute(
-    onTeamClick: () -> Unit
+    onTeamClick: (TeamDetail) -> Unit
 ) {
     val route = TableDestination.Standings.route
     val leagueId = TableDestination.Standings.arguments[0]
@@ -32,7 +33,7 @@ fun NavGraphBuilder.standingsRoute(
 
 @Composable
 fun StandingsRoute(
-    onTeamClick: () -> Unit,
+    onTeamClick: (TeamDetail) -> Unit,
     viewModel: StandingsViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()

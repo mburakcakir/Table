@@ -12,7 +12,8 @@ enum class TableDestination(
         arguments = listOf("leagueId","leagueIcon")
     ),
     TeamDetail(
-        route = "teamDetail"
+        route = "teamDetail",
+        arguments = listOf("teamDetail")
     )
 }
 

@@ -9,8 +9,8 @@ android {
 }
 
 dependencies {
-    implementation(projects.core.network)
     implementation(projects.core.common)
+    implementation(projects.core.domain)
     implementation(projects.feature.leagues)
     implementation(projects.feature.standings)
     implementation(projects.feature.teamdetail)

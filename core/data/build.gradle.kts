@@ -12,5 +12,4 @@ dependencies {
     implementation(projects.core.common)
 
     implementation(libs.retrofit)
-    implementation(libs.converter.gson)
 }
