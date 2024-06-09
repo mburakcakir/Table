@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -45,7 +44,6 @@ import com.mburakcakir.common.extensions.hexColor
 import com.mburakcakir.common.extensions.isNotNullAndEmpty
 import com.mburakcakir.common.extensions.loadImageWithUrl
 import com.mburakcakir.common.extensions.notNullOrEmptyComposable
-import com.mburakcakir.domain.model.Qualification
 import com.mburakcakir.domain.model.Standing
 import com.mburakcakir.domain.model.Standings
 import com.mburakcakir.domain.model.teamdetail.TeamDetail
@@ -54,6 +52,7 @@ import com.mburakcakir.network.model.Note
 import com.mburakcakir.network.model.Season
 import com.mburakcakir.ui.header.Header
 import com.mburakcakir.ui.loading.Loading
+import com.mburakcakir.ui.qualifications.Qualifications
 import com.mburakcakir.ui.teamstatistics.TeamStatistics
 import java.util.Locale
 
@@ -177,39 +176,6 @@ fun TeamList(standings: Standings?, onTeamClickNotifier: (Standing?) -> Unit) {
         item {
             Qualifications(standings.qualifications?.list)
         }
-    }
-}
-
-@Composable
-fun Qualifications(qualifications: List<Qualification>?) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentHeight()
-            .padding(start = 8.dp)
-    ) {
-        qualifications?.filter { it.description != null }?.forEach {
-            Qualification(qualification = it)
-            Spacer(modifier = Modifier.height(4.dp))
-        }
-        Spacer(modifier = Modifier.height(8.dp))
-    }
-}
-
-@Composable
-fun Qualification(qualification: Qualification) {
-    Row(
-        modifier = Modifier.wrapContentSize(),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Box(
-            modifier = Modifier
-                .height(8.dp)
-                .width(8.dp)
-                .background(qualification.color ?: Color.LightGray)
-        )
-        Spacer(modifier = Modifier.width(8.dp))
-        Text(text = qualification.description!!, fontSize = 12.sp, fontWeight = FontWeight.Bold)
     }
 }
 
