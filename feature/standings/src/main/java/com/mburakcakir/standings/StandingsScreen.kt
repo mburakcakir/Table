@@ -88,6 +88,7 @@ fun StandingsScreen(
                                 standings = TeamDetailStandings(
                                     leagueName = standings.leagueName,
                                     teamName = standing?.teamName,
+                                    abbreviation = standing?.abbreviation,
                                     logo = standing?.logo,
                                     standings = standings.standings,
                                     qualifications = standings.qualifications

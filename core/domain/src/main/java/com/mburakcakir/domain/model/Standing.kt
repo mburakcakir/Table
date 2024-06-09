@@ -10,6 +10,7 @@ data class Standings(
 
 data class Standing(
     val teamName: String? = null,
+    val abbreviation: String? = null,
     val logo: String? = null,
     val rank: String? = null,
     val note: Note? = null,

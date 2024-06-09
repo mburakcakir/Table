@@ -12,7 +12,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.mburakcakir.common.extensions.isNotNullAndEmpty
 import com.mburakcakir.common.extensions.loadImageWithUrl
 import com.mburakcakir.common.extensions.notNullOrEmptyComposable
@@ -50,15 +52,15 @@ fun Header(
         Spacer(modifier = Modifier.width(8.dp))
         Column {
             standing?.teamName.notNullOrEmptyComposable {
-                Text(text = it)
+                Text(text = "$it (${standing?.abbreviation})", fontWeight = FontWeight.Bold)
                 Spacer(modifier = Modifier.height(4.dp))
             }
             standing?.leagueName.notNullOrEmptyComposable {
-                Text(text = it)
+                Text(text = it, fontSize = 12.sp)
                 Spacer(modifier = Modifier.height(4.dp))
             }
             if (seasonStart.isNotNullAndEmpty() && seasonEnd.isNotNullAndEmpty()) {
-                Text(text = "$seasonStart - $seasonEnd")
+                Text(text = "$seasonStart - $seasonEnd", fontSize = 10.sp)
             }
         }
     }

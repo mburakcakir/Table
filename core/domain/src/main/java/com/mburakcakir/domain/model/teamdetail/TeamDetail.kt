@@ -12,6 +12,7 @@ data class TeamDetail(
 data class TeamDetailStandings(
     val leagueName: String? = null,
     val teamName: String? = null,
+    val abbreviation: String? = null,
     val logo: String? = null,
     val standings: List<Standing>? = null,
     val qualifications: Qualifications? = null
