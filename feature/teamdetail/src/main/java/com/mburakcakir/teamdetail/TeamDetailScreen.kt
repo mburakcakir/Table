@@ -52,7 +52,6 @@ fun TeamDetailScreen(
             Spacer(modifier = Modifier.height(8.dp))
             AllSeasons(
                 uiState.headerList,
-                uiState.selectedSeasons,
                 uiState.selectedStandings?.toList()
             )
         }
@@ -98,14 +97,12 @@ fun TeamHeader(
 @Composable
 fun AllSeasons(
     headerList: MutableList<String>,
-    seasons: List<Season?>?,
-    standings: List<Standing?>?
+    standings: List<StandingSeason?>?,
 ) {
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
         SeasonInfo(
-            seasons = seasons,
             standings = standings,
             headers = headerList,
         )
@@ -114,8 +111,7 @@ fun AllSeasons(
 
 @Composable
 fun SeasonInfo(
-    seasons: List<Season?>?,
-    standings: List<Standing?>?,
+    standings: List<StandingSeason?>?,
     headers: MutableList<String>
 ) {
     Column(
@@ -123,14 +119,13 @@ fun SeasonInfo(
     ) {
         Spacer(modifier = Modifier.height(8.dp))
         Header(headers)
-        Seasons(seasons, standings)
+        Seasons(standings)
     }
 }
 
 @Composable
 fun Seasons(
-    seasons: List<Season?>?,
-    standings: List<Standing?>?
+    standings: List<StandingSeason?>?
 ) {
     LazyColumn {
         item {
@@ -139,8 +134,8 @@ fun Seasons(
         standings.notNull {
             this.itemsIndexed(items = it.filterNotNull()) { index, item ->
                 Season(
-                    item = item,
-                    season = seasons?.get(index),
+                    item = item.standings,
+                    season = item.season,
                     bgColor = if (index % 2 != 0) Color(0xFFf0eeed) else Color.White
                 )
             }
@@ -152,7 +147,7 @@ fun Seasons(
 }
 
 @Composable
-fun Season(item: Standing, season: Season?, bgColor: Color) {
+fun Season(item: Standing?, season: Season?, bgColor: Color) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -172,7 +167,7 @@ fun Season(item: Standing, season: Season?, bgColor: Color) {
 
         Spacer(modifier = Modifier.weight(1f))
         Log.v("myItem", item.toString())
-        TeamStatistics(values = item.values?.plus(item.rank.toString()))
+        TeamStatistics(values = item?.values?.plus(item.rank.toString()))
         Spacer(modifier = Modifier.width(4.dp))
     }
     HorizontalDivider()

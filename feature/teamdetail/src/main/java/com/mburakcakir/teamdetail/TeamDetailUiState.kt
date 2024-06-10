@@ -10,6 +10,10 @@ data class TeamDetailUiState(
     var seasonStart: String? = null,
     var seasonEnd: String? = null,
     val headerList: MutableList<String> = mutableListOf(),
-    val selectedStandings: MutableList<Standing?>? = mutableListOf(),
-    val selectedSeasons: MutableList<Season?>? = mutableListOf()
+    val selectedStandings: MutableList<StandingSeason?>? = mutableListOf(),
+)
+
+data class StandingSeason(
+    val standings: Standing?,
+    val season: Season?
 )

@@ -52,8 +52,12 @@ class TeamDetailViewModel @Inject constructor(
                     isLoading = false,
                     seasonStart = seasonStart,
                     seasonEnd = seasonEnd,
-                    selectedStandings = mutableListOf(teamDetail?.standings?.standing),
-                    selectedSeasons = mutableListOf(teamDetail?.standings?.season)
+                    selectedStandings = mutableListOf(
+                        StandingSeason(
+                            standings = teamDetail?.standings?.standing,
+                            season = teamDetail?.standings?.season
+                        )
+                    ),
                 )
             }
         }
@@ -70,14 +74,14 @@ class TeamDetailViewModel @Inject constructor(
                             val teamName = _uiState.value.teamDetail?.standings?.standing?.teamName
                             val filteredStandings = standings.filter { it.teamName == teamName }
                             val selectedSeasons = filteredStandings.map { season }
-
+                            val standingSeason =
+                                StandingSeason(filteredStandings.first(), selectedSeasons.first())
                             _uiState.update {
                                 it.copy(
                                     isLoading = false,
                                     selectedStandings = ((it.selectedStandings)?.plus(
-                                        filteredStandings
-                                    ))?.toMutableList(),
-                                    selectedSeasons = ((it.selectedSeasons)?.plus(selectedSeasons))?.toMutableList()
+                                        standingSeason
+                                    ))?.sortedByDescending { it?.season?.year }?.toMutableList(),
                                 )
                             }
                         }
