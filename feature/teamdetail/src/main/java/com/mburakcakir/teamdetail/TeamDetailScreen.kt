@@ -1,6 +1,5 @@
 package com.mburakcakir.teamdetail
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -41,22 +40,23 @@ fun TeamDetailScreen(
     uiState: TeamDetailUiState,
     onSeasonClick: (Season) -> Unit,
 ) {
-    if (!uiState.isLoading) {
-        Column {
-            TeamHeader(
-                uiState.teamDetail,
-                uiState.seasonStart,
-                uiState.seasonEnd,
-                onSeasonClick
-            )
-            Spacer(modifier = Modifier.height(8.dp))
+
+    Column {
+        TeamHeader(
+            uiState.teamDetail,
+            uiState.seasonStart,
+            uiState.seasonEnd,
+            onSeasonClick
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+        if (!uiState.isLoading) {
             AllSeasons(
                 uiState.headerList,
                 uiState.selectedStandings?.toList()
             )
+        } else {
+            Loading()
         }
-    } else {
-        Loading()
     }
 }
 
@@ -73,12 +73,12 @@ fun TeamHeader(
             .background(Color.LightGray)
             .padding(8.dp)
     ) {
-        teamDetail?.standings?.standing?.logo?.loadImageWithUrl(size = 48.dp)
+        teamDetail?.standings?.selectedStanding?.logo?.loadImageWithUrl(size = 48.dp)
         Spacer(modifier = Modifier.width(8.dp))
         Column {
-            teamDetail?.standings?.standing?.teamName.notNullOrEmptyComposable {
+            teamDetail?.standings?.selectedStanding?.teamName.notNullOrEmptyComposable {
                 Text(
-                    text = "$it (${teamDetail?.standings?.standing?.abbreviation})",
+                    text = "$it (${teamDetail?.standings?.selectedStanding?.abbreviation})",
                     fontWeight = FontWeight.Bold
                 )
                 Spacer(modifier = Modifier.height(4.dp))
@@ -87,7 +87,10 @@ fun TeamHeader(
                 Text(text = "$it ($seasonStart - $seasonEnd)", fontSize = 12.sp)
                 Spacer(modifier = Modifier.height(4.dp))
             }
-            SeasonDropdownMenu(seasons = teamDetail?.seasons) {
+            SeasonDropdownMenu(
+                seasons = teamDetail?.seasons,
+                selectedSeason = teamDetail?.standings?.selectedSeason
+            ) {
                 onSeasonClick.invoke(it)
             }
         }
@@ -166,7 +169,6 @@ fun Season(item: Standing?, season: Season?, bgColor: Color) {
         }
 
         Spacer(modifier = Modifier.weight(1f))
-        Log.v("myItem", item.toString())
         TeamStatistics(values = item?.values?.plus(item.rank.toString()))
         Spacer(modifier = Modifier.width(4.dp))
     }

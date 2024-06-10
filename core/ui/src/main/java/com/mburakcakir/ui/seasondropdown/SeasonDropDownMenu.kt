@@ -1,6 +1,5 @@
 package com.mburakcakir.ui.seasondropdown
 
-import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -27,10 +26,13 @@ import com.mburakcakir.network.model.Season
 @Composable
 fun SeasonDropdownMenu(
     seasons: List<Season>?,
+    selectedSeason: Season? = null,
     onSeasonClick: (Season) -> Unit
 ) {
+    val initialIndex = seasons?.indexOf(selectedSeason).takeIf { it != -1 } ?: 0
+
     var expanded by remember { mutableStateOf(false) }
-    var selectedIndex by remember { mutableIntStateOf(0) }
+    var selectedIndex by remember { mutableIntStateOf(initialIndex) }
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -40,12 +42,13 @@ fun SeasonDropdownMenu(
             modifier = Modifier.clickableWithNoRippleEffect { expanded = true },
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Log.v("selectedIndex", selectedIndex.toString())
+            val selectedSeasonName =
+                seasons?.getOrNull(selectedIndex)?.displayName?.split(" ")?.firstOrNull().orEmpty()
+
             Text(
-                seasons?.get(selectedIndex)?.displayName?.split(" ")?.get(0) ?: "",
+                text = selectedSeasonName,
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier
-                    .wrapContentWidth()
+                modifier = Modifier.wrapContentWidth()
             )
             Icon(imageVector = Icons.Filled.KeyboardArrowDown, contentDescription = "Arrow")
         }
@@ -53,12 +56,12 @@ fun SeasonDropdownMenu(
         DropdownMenu(
             expanded = expanded,
             onDismissRequest = { expanded = false },
-            modifier = Modifier
-                .fillMaxWidth()
+            modifier = Modifier.fillMaxWidth()
         ) {
             seasons?.forEachIndexed { index, item ->
+                val teamName = item.displayName?.split(" ")?.firstOrNull().orEmpty()
                 DropdownMenuItem(
-                    text = { Text(item.displayName.split(" ")[0]) },
+                    text = { Text(teamName) },
                     onClick = {
                         expanded = false
                         selectedIndex = index

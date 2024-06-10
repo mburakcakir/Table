@@ -16,18 +16,18 @@ data class SeasonInfo(
 )
 
 data class Type(
-    val abbreviation: String,
-    val endDate: String,
-    val hasStandings: Boolean,
-    val id: String,
-    val name: String,
-    val startDate: String
+    val abbreviation: String?,
+    val endDate: String?,
+    val hasStandings: Boolean?,
+    val id: String?,
+    val name: String?,
+    val startDate: String?
 )
 
 data class Season(
-    val displayName: String,
-    val endDate: String,
-    val startDate: String,
-    val types: List<Type>,
-    val year: Int
+    val displayName: String?,
+    val endDate: String?,
+    val startDate: String?,
+    val types: List<Type>?,
+    val year: Int?
 )

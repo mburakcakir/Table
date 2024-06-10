@@ -75,8 +75,8 @@ fun StandingsScreen(
                                 standings = TeamDetailStandings(
                                     leagueId = uiState.leagueId,
                                     leagueName = standings.leagueName,
-                                    season = uiState.selectedSeason,
-                                    standing = standing
+                                    selectedSeason = uiState.selectedSeason,
+                                    selectedStanding = standing
                                 )
                             )
                         }

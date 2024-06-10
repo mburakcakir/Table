@@ -54,8 +54,8 @@ class TeamDetailViewModel @Inject constructor(
                     seasonEnd = seasonEnd,
                     selectedStandings = mutableListOf(
                         StandingSeason(
-                            standings = teamDetail?.standings?.standing,
-                            season = teamDetail?.standings?.season
+                            standings = teamDetail?.standings?.selectedStanding,
+                            season = teamDetail?.standings?.selectedSeason
                         )
                     ),
                 )
@@ -67,11 +67,12 @@ class TeamDetailViewModel @Inject constructor(
         val leagueId = _uiState.value.teamDetail?.standings?.leagueId
         if (leagueId.isNotNullAndEmpty() && season?.year != null) {
             viewModelScope.launch(Dispatchers.IO) {
-                standingsUseCase(leagueId!!, season.year, sort).collectAsState(
+                standingsUseCase(leagueId!!, season.year!!, sort).collectAsState(
                     onLoading = { _uiState.update { it.copy(isLoading = true) } },
                     onSuccess = { data ->
                         data.standings.notNull { standings ->
-                            val teamName = _uiState.value.teamDetail?.standings?.standing?.teamName
+                            val teamName =
+                                _uiState.value.teamDetail?.standings?.selectedStanding?.teamName
                             val filteredStandings = standings.filter { it.teamName == teamName }
                             val selectedSeasons = filteredStandings.map { season }
                             val standingSeason =

@@ -50,7 +50,7 @@ class StandingsViewModel @Inject constructor(
     fun getStandings(season: Season?, sort: String = "asc") {
         if (leagueId.isNotNullAndEmpty() && season?.year != null)
             viewModelScope.launch(Dispatchers.IO) {
-                standingsUseCase(leagueId!!, season.year, sort).collectAsState(
+                standingsUseCase(leagueId!!, season.year!!, sort).collectAsState(
                     onLoading = { _uiState.update { it.copy(isLoading = true) } },
                     onSuccess = { data ->
                         if (data.standings != null) {

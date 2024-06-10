@@ -11,6 +11,6 @@ data class TeamDetail(
 data class TeamDetailStandings(
     val leagueId: String? = null,
     val leagueName: String? = null,
-    val season: Season? = null,
-    val standing: Standing? = null
+    val selectedSeason: Season? = null,
+    val selectedStanding: Standing? = null
 )
