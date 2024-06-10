@@ -29,5 +29,8 @@ fun TeamDetailRoute(
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
-    TeamDetailScreen(uiState)
+    TeamDetailScreen(
+        uiState = uiState,
+        onSeasonClick = { viewModel.getStandings(it) }
+    )
 }

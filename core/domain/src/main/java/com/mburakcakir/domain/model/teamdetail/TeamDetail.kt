@@ -1,6 +1,5 @@
 package com.mburakcakir.domain.model.teamdetail
 
-import com.mburakcakir.domain.model.Qualifications
 import com.mburakcakir.domain.model.Standing
 import com.mburakcakir.network.model.Season
 
@@ -10,10 +9,8 @@ data class TeamDetail(
 )
 
 data class TeamDetailStandings(
+    val leagueId: String? = null,
     val leagueName: String? = null,
-    val teamName: String? = null,
-    val abbreviation: String? = null,
-    val logo: String? = null,
-    val standings: List<Standing>? = null,
-    val qualifications: Qualifications? = null
+    val season: Season? = null,
+    val standing: Standing? = null
 )

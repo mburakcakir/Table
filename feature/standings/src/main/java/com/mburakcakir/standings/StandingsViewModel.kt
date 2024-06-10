@@ -5,10 +5,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mburakcakir.common.destination.TableDestination
 import com.mburakcakir.common.extensions.collectAsState
+import com.mburakcakir.common.extensions.isNotNullAndEmpty
 import com.mburakcakir.common.extensions.notNull
 import com.mburakcakir.common.extensions.notNullOrEmpty
 import com.mburakcakir.domain.usecase.SeasonsUseCase
 import com.mburakcakir.domain.usecase.StandingsUseCase
+import com.mburakcakir.network.model.Season
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -30,7 +32,13 @@ class StandingsViewModel @Inject constructor(
     private val headerList = mutableListOf("OM", "G", "B", "M", "AG", "YG", "A", "P")
 
     private val _uiState =
-        MutableStateFlow(StandingsUiState(headerList = headerList, leagueIcon = leagueIcon))
+        MutableStateFlow(
+            StandingsUiState(
+                headerList = headerList,
+                leagueId = leagueId,
+                leagueIcon = leagueIcon
+            )
+        )
     val uiState: StateFlow<StandingsUiState> = _uiState.asStateFlow()
 
     init {
@@ -39,24 +47,24 @@ class StandingsViewModel @Inject constructor(
         }
     }
 
-    fun getStandings(season: Int, sort: String = "asc") {
-        leagueId.notNullOrEmpty {
+    fun getStandings(season: Season?, sort: String = "asc") {
+        if (leagueId.isNotNullAndEmpty() && season?.year != null)
             viewModelScope.launch(Dispatchers.IO) {
-                standingsUseCase(leagueId!!, season, sort).collectAsState(
+                standingsUseCase(leagueId!!, season.year, sort).collectAsState(
                     onLoading = { _uiState.update { it.copy(isLoading = true) } },
                     onSuccess = { data ->
                         if (data.standings != null) {
                             _uiState.update {
                                 it.copy(
                                     isLoading = false,
-                                    standings = data
+                                    standings = data,
+                                    selectedSeason = season
                                 )
                             }
                         }
                     }
                 )
             }
-        }
     }
 
     private fun getSeasons(leagueId: String) {
@@ -71,7 +79,7 @@ class StandingsViewModel @Inject constructor(
                                 seasons = seasonInfo
                             )
                         }
-                        seasonInfo.seasons?.first()?.year.notNull {
+                        seasonInfo.seasons?.first()?.notNull {
                             getStandings(
                                 season = it
                             )

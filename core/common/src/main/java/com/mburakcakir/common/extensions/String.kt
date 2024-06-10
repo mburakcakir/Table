@@ -15,8 +15,10 @@ import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
 import androidx.compose.ui.graphics.Color as ComposeColor
 
-val String.hexColor
-    get() = ComposeColor(Color.parseColor(this))
+val String.hexColor: ComposeColor?
+    get() = runCatching {
+        ComposeColor(Color.parseColor(this))
+    }.getOrNull()
 
 fun String.encode(): String = URLEncoder.encode(
     this,
