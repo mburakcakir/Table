@@ -8,9 +8,9 @@ import com.mburakcakir.common.extensions.collectAsState
 import com.mburakcakir.common.extensions.getGsonFromJson
 import com.mburakcakir.common.extensions.isNotNullAndEmpty
 import com.mburakcakir.common.extensions.notNull
-import com.mburakcakir.domain.model.teamdetail.TeamDetail
 import com.mburakcakir.domain.usecase.StandingsUseCase
-import com.mburakcakir.network.model.Season
+import com.mburakcakir.model.standings.Season
+import com.mburakcakir.model.teamdetail.TeamDetail
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow

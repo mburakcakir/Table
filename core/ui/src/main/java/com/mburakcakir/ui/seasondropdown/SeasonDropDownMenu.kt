@@ -21,7 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import com.mburakcakir.common.extensions.clickableWithNoRippleEffect
-import com.mburakcakir.network.model.Season
+import com.mburakcakir.model.standings.Season
 
 @Composable
 fun SeasonDropdownMenu(

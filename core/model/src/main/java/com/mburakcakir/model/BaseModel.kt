@@ -1,4 +1,4 @@
-package com.mburakcakir.network.model
+package com.mburakcakir.model
 
 interface BaseModel {
     val status: Boolean?

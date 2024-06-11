@@ -1,6 +1,4 @@
-package com.mburakcakir.domain.model
-
-import com.mburakcakir.network.model.Note
+package com.mburakcakir.model.standings
 
 data class Standings(
     val leagueName: String? = null,

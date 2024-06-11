@@ -4,7 +4,7 @@ import com.mburakcakir.common.state.State
 import com.mburakcakir.data.repository.TableRepository
 import com.mburakcakir.domain.extensions.asStandingsResponseMapper
 import com.mburakcakir.domain.extensions.mapModel
-import com.mburakcakir.domain.model.Standings
+import com.mburakcakir.model.standings.Standings
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

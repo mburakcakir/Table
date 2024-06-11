@@ -1,4 +1,4 @@
-package com.mburakcakir.domain.model
+package com.mburakcakir.model.standings
 
 import androidx.compose.ui.graphics.Color
 

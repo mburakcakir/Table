@@ -10,7 +10,7 @@ import com.mburakcakir.common.extensions.notNull
 import com.mburakcakir.common.extensions.notNullOrEmpty
 import com.mburakcakir.domain.usecase.SeasonsUseCase
 import com.mburakcakir.domain.usecase.StandingsUseCase
-import com.mburakcakir.network.model.Season
+import com.mburakcakir.model.standings.Season
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow

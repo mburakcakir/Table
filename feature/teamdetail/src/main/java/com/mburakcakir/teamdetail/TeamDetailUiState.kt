@@ -1,8 +1,8 @@
 package com.mburakcakir.teamdetail
 
-import com.mburakcakir.domain.model.Standing
-import com.mburakcakir.domain.model.teamdetail.TeamDetail
-import com.mburakcakir.network.model.Season
+import com.mburakcakir.model.standings.Season
+import com.mburakcakir.model.standings.Standing
+import com.mburakcakir.model.teamdetail.TeamDetail
 
 data class TeamDetailUiState(
     val isLoading: Boolean = false,

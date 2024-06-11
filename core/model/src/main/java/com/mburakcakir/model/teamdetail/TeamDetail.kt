@@ -1,7 +1,7 @@
-package com.mburakcakir.domain.model.teamdetail
+package com.mburakcakir.model.teamdetail
 
-import com.mburakcakir.domain.model.Standing
-import com.mburakcakir.network.model.Season
+import com.mburakcakir.model.standings.Season
+import com.mburakcakir.model.standings.Standing
 
 data class TeamDetail(
     val seasons: List<Season>?,

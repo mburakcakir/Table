@@ -1,6 +1,6 @@
 package com.mburakcakir.leagues
 
-import com.mburakcakir.network.model.LeaguesModel
+import com.mburakcakir.model.leagues.LeaguesModel
 
 data class LeaguesUIState(
     val isLoading: Boolean = false,

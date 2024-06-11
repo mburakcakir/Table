@@ -2,9 +2,9 @@ package com.mburakcakir.data.repository
 
 import com.mburakcakir.common.state.State
 import com.mburakcakir.data.datasource.TableDataSource
-import com.mburakcakir.network.model.LeaguesModel
-import com.mburakcakir.network.model.SeasonsModel
-import com.mburakcakir.network.model.StandingsModel
+import com.mburakcakir.model.leagues.LeaguesModel
+import com.mburakcakir.model.standings.SeasonsModel
+import com.mburakcakir.model.standings.StandingsModel
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

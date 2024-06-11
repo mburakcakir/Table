@@ -1,11 +1,11 @@
 package com.mburakcakir.domain.utils
 
 import com.mburakcakir.common.extensions.hexColor
-import com.mburakcakir.domain.model.Qualification
-import com.mburakcakir.domain.model.Qualifications
-import com.mburakcakir.domain.model.Standing
-import com.mburakcakir.network.model.Note
-import com.mburakcakir.network.model.StandingInfo
+import com.mburakcakir.model.standings.Note
+import com.mburakcakir.model.standings.Qualification
+import com.mburakcakir.model.standings.Qualifications
+import com.mburakcakir.model.standings.Standing
+import com.mburakcakir.model.standings.StandingInfo
 
 class QualificationHandler(standingInfos: List<StandingInfo>) {
 

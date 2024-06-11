@@ -1,8 +1,8 @@
 package com.mburakcakir.network.di
 
-import com.mburakcakir.network.model.LeaguesModel
-import com.mburakcakir.network.model.SeasonsModel
-import com.mburakcakir.network.model.StandingsModel
+import com.mburakcakir.model.leagues.LeaguesModel
+import com.mburakcakir.model.standings.SeasonsModel
+import com.mburakcakir.model.standings.StandingsModel
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

@@ -1,6 +1,7 @@
-package com.mburakcakir.network.model
+package com.mburakcakir.model.leagues
 
 import com.google.gson.annotations.SerializedName
+import com.mburakcakir.model.BaseModel
 
 data class LeaguesModel(
     @SerializedName("data")

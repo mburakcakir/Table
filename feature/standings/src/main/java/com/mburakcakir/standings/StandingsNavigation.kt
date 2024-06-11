@@ -9,7 +9,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.mburakcakir.common.destination.TableDestination
-import com.mburakcakir.domain.model.teamdetail.TeamDetail
+import com.mburakcakir.model.teamdetail.TeamDetail
 
 fun NavGraphBuilder.standingsRoute(
     onTeamClick: (TeamDetail) -> Unit

@@ -27,9 +27,9 @@ import androidx.compose.ui.unit.sp
 import com.mburakcakir.common.extensions.loadImageWithUrl
 import com.mburakcakir.common.extensions.notNull
 import com.mburakcakir.common.extensions.notNullOrEmptyComposable
-import com.mburakcakir.domain.model.Standing
-import com.mburakcakir.domain.model.teamdetail.TeamDetail
-import com.mburakcakir.network.model.Season
+import com.mburakcakir.model.standings.Season
+import com.mburakcakir.model.standings.Standing
+import com.mburakcakir.model.teamdetail.TeamDetail
 import com.mburakcakir.ui.header.Header
 import com.mburakcakir.ui.loading.Loading
 import com.mburakcakir.ui.seasondropdown.SeasonDropdownMenu
