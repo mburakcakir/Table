@@ -1,4 +1,4 @@
-package com.mburakcakir.ui
+package com.mburakcakir.ui.loading
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize

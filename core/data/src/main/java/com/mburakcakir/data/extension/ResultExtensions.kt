@@ -1,7 +1,7 @@
 package com.mburakcakir.data.extension
 
 import com.mburakcakir.common.state.State
-import com.mburakcakir.network.model.BaseModel
+import com.mburakcakir.model.BaseModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow

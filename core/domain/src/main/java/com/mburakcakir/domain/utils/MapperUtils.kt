@@ -1,11 +1,11 @@
 package com.mburakcakir.domain.utils
 
 import com.mburakcakir.common.extensions.hexColor
-import com.mburakcakir.domain.model.Qualification
-import com.mburakcakir.domain.model.Qualifications
-import com.mburakcakir.domain.model.Standing
-import com.mburakcakir.network.model.Note
-import com.mburakcakir.network.model.StandingInfo
+import com.mburakcakir.model.standings.Note
+import com.mburakcakir.model.standings.Qualification
+import com.mburakcakir.model.standings.Qualifications
+import com.mburakcakir.model.standings.Standing
+import com.mburakcakir.model.standings.StandingInfo
 
 class QualificationHandler(standingInfos: List<StandingInfo>) {
 
@@ -29,8 +29,8 @@ class StandingHandler(private val standingInfo: StandingInfo) {
 
     private val emptyLogo = "https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/default-team-logo-500.png"
     fun toMapperModel() = Standing(
-        emptyLogo = emptyLogo,
         teamName = standingInfo.team?.name,
+        abbreviation = standingInfo.team?.abbreviation,
         logo = standingInfo.team?.logos?.get(0)?.href ?: emptyLogo,
         rank = standingInfo.stats?.find { it.name == "rank" }?.value.toString(),
         note = standingInfo.note,

@@ -5,8 +5,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.mburakcakir.common.destination.TableDestination
 import com.mburakcakir.common.extensions.encode
+import com.mburakcakir.common.extensions.toJson
 import com.mburakcakir.leagues.leaguesRoute
 import com.mburakcakir.standings.standingsRoute
+import com.mburakcakir.teamdetail.teamDetailRoute
 
 @Composable
 fun TableAppNavigation() {
@@ -22,7 +24,12 @@ fun TableAppNavigation() {
                     )
                 }
             )
-            standingsRoute()
+            standingsRoute(
+                onTeamClick = { teamDetail ->
+                    navController.navigate("${TableDestination.TeamDetail.route}/${teamDetail.toJson()}")
+                }
+            )
+            teamDetailRoute()
         }
     )
 }

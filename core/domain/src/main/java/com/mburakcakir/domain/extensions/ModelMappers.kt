@@ -1,10 +1,10 @@
 package com.mburakcakir.domain.extensions
 
-import com.mburakcakir.domain.model.Standings
 import com.mburakcakir.domain.utils.QualificationHandler
 import com.mburakcakir.domain.utils.StandingHandler
-import com.mburakcakir.network.model.StandingInfo
-import com.mburakcakir.network.model.StandingsInfo
+import com.mburakcakir.model.standings.StandingInfo
+import com.mburakcakir.model.standings.Standings
+import com.mburakcakir.model.standings.StandingsInfo
 
 fun StandingsInfo.asStandingsResponseMapper(): Standings = Standings(
     name,

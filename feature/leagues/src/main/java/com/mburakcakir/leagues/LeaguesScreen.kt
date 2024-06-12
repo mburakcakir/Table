@@ -17,8 +17,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.mburakcakir.common.extensions.loadImageWithUrl
-import com.mburakcakir.network.model.League
-import com.mburakcakir.ui.Loading
+import com.mburakcakir.model.leagues.League
+import com.mburakcakir.ui.loading.Loading
 
 
 @Composable

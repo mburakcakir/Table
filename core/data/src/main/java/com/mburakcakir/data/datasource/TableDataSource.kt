@@ -1,11 +1,11 @@
 package com.mburakcakir.data.datasource
 
 import com.mburakcakir.common.state.State
-import com.mburakcakir.network.di.NetworkApi
 import com.mburakcakir.data.extension.handleRequest
-import com.mburakcakir.network.model.LeaguesModel
-import com.mburakcakir.network.model.SeasonsModel
-import com.mburakcakir.network.model.StandingsModel
+import com.mburakcakir.model.leagues.LeaguesModel
+import com.mburakcakir.model.standings.SeasonsModel
+import com.mburakcakir.model.standings.StandingsModel
+import com.mburakcakir.network.di.NetworkApi
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

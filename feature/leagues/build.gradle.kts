@@ -9,9 +9,8 @@ android {
 }
 
 dependencies {
-    implementation(projects.core.network)
-    implementation(projects.core.data)
     implementation(projects.core.common)
     implementation(projects.core.domain)
+    implementation(projects.core.model)
     implementation(projects.core.ui)
 }
