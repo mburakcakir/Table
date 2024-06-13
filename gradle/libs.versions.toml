@@ -8,8 +8,8 @@ minSdk = "24"
 # Plugins
 androidApplication = "8.2.2"
 agp = "8.2.2"
-kotlin = "1.9.23"
-ksp = "1.9.23-1.0.20"
+kotlin = "2.0.0"
+ksp = "2.0.0-1.0.21"
 
 # Libs
 
@@ -29,7 +29,6 @@ chuckerNoOp = "4.0.0"
 # Compose
 composeBom = "2024.06.00"
 composeNavigation = "2.7.7"
-compose-compiler = "1.5.13"
 
 # Gradle
 gradle = "8.2.2"
@@ -96,6 +95,7 @@ android-library = { id = "com.android.library", version.ref = "agp" }
 android-kotlin-jetbrains = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 android-hilt = { id = "com.google.dagger.hilt.android", version.ref = "hiltAndroid" }
+android-compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 
 # Convention Plugin IDs
 
