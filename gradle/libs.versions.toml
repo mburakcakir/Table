@@ -16,7 +16,7 @@ ksp = "1.9.0-1.0.13"
 # Core
 appCompat = "1.7.0"
 androidxCore = "1.13.1"
-androidXLifecycleRuntime = "2.8.1"
+androidXLifecycleRuntime = "2.8.2"
 
 # Coil
 coilCompose = "2.6.0"
