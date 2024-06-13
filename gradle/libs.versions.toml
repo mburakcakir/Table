@@ -6,7 +6,7 @@ compileSdk = "34"
 minSdk = "24"
 
 # Plugins
-androidApplication = "8.2.0"
+androidApplication = "8.2.2"
 agp = "8.2.0"
 kotlin = "1.9.23"
 ksp = "1.9.23-1.0.20"
