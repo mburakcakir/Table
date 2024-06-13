@@ -36,7 +36,7 @@ gradle = "8.2.1"
 kotlinGradle = "1.9.21"
 
 # Hilt
-hiltAndroid = "2.51"
+hiltAndroid = "2.51.1"
 hiltNavigationCompose = "1.2.0"
 
 # Network
