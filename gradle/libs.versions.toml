@@ -32,7 +32,7 @@ composeNavigation = "2.7.7"
 compose-compiler = "1.5.0"
 
 # Gradle
-gradle = "8.2.1"
+gradle = "8.2.2"
 kotlinGradle = "1.9.21"
 
 # Hilt
